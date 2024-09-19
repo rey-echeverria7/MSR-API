@@ -35,6 +35,7 @@ def login(request):
 
     return Response({"token":token.key,"user":serializer.data}, status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
 def register(request):
     serializer =  UserSerializer(data = request.data)
@@ -63,6 +64,7 @@ def logout(request):
             return Response({'detail':"Successfully logged out."}, status=status.HTTP_200_OK)
        except Token.DoesNotExist:
             return Response({"error": "Token not found."}, status=status.HTTP_400_BAD_REQUEST)
+       
 
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
